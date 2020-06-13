@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <h1>Project Data</h1>
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Project Name</label>
+            <input type="text" class="form-control" formControlName="projectName"
+                [class.in-valid]="projectName.invalid && projectName.touched" maxlength="100">
+            <div *ngIf="projectName.invalid && projectName.touched">
+                <small class="text-danger" *ngIf="projectName.errors?.required">name is required</small>
+                <small class="text-danger" *ngIf="projectName.errors?.pattern">name must be letters </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Employee Name</label>
+            <button type="button" class="btn btn-secondary ml-2 mb-2" (click)="addEmployee()">Add More
+                Employees</button>
+            <div class="row">
+                <div formArrayName="employees" *ngFor="let employee of employees.controls ; let i=index ">
+                    <select class="form-control my-1 ml-3" [formControlName]="i"
+                        (change)="onSelectMoreEmployees(employee.value,i)" style="width: 95%;">
+                        <option [value]="employee.value.empName">{{employee.value.empName}}</option>
+                        <option *ngFor="let name of employeeNames">{{name}}</option>
+                    </select>
+                    <button class="btn btn-danger btn-sm font-weight-bold ml-3 mb-1" type="button"
+                        (click)="onReduceEmployees(i)">X</button>
+                </div>
+            </div>
+            <small class="text-danger" [class.d-none]="!isRepeated">Choosing the same employee is not available</small>
+
+        </div>
+        <div class="form-group">
+            <label>Department Name</label>
+            <select class="form-control" formControlName="department" (change)="onSelectDepartment(department.value)">
+                <option [value]="department.value">{{department.value}}</option>
+                <option *ngFor="let name of departmentNames">{{name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary mr-2"
+                [class.disabled]="(projectForm.invalid||isRepeated)">Submit</button>
+        </div>
+    </form>
+</div>

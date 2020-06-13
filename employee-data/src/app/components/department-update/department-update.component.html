@@ -1,0 +1,17 @@
+    <div class="container-fluid">
+        <h1>Department Data</h1>
+        
+        <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                  <label>Department Name</label>
+                  <input type="text" class="form-control" formControlName="deptName" maxlength="30"
+                  [class.in-valid]="deptName.invalid && deptName.touched">
+                  <small class="text-danger" [class.d-none]="deptName.valid || deptName.untouched">name is required</small>                       
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary " [class.disabled]="departmentForm.invalid">Submit</button>
+                
+            </div>
+        </form>
+    </div>
+

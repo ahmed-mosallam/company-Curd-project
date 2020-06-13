@@ -1,0 +1,18 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col"> ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Edit</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let data of departmentData">
+    <tr>
+      <th scope="row">{{data.deptId}}</th>
+      <td>{{data.deptName}}</td>
+      <td> <button type="submit" class="btn btn-secondary mr-2" (click)="onDelete(data.deptId)">Delate</button>
+        <button type="submit" class="btn btn-secondary" (click)="onUpdate(data.deptId)">Update</button></td>
+    </tr>
+
+  </tbody>
+</table>

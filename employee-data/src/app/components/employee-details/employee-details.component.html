@@ -1,0 +1,29 @@
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col"> ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Department</th>
+      <th scope="col"> City</th>
+      <th scope="col"> Street</th>
+      <th scope="col"> House Number</th>
+      <th scope="col"> Edit</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let data of employeeData">
+    <tr>
+      <th scope="row">{{data.empId}}</th>
+      <td>{{data.empName}}</td>
+      <td>{{data.empSalary}}</td>
+      <td>{{data.department.deptName}}</td>
+      <td>{{data.employeeAddress.city}}</td>
+      <td>{{data.employeeAddress.street}}</td>
+      <td>{{data.employeeAddress.houseNum}}</td>
+      <td> <button type="submit" class="btn btn-secondary mr-2" (click)="onDelete(data.empId)">Delate</button>
+        <button type="submit" class="btn btn-secondary" (click)="onUpdate(data.empId)">Update</button>
+      </td>
+    </tr>
+
+  </tbody>
+</table>
